@@ -30,17 +30,12 @@ print("IMPORTANT: If you changed SCOPES, delete token.json and re-authenticate."
 try:
     # Configure the Gemini API key (Example: Load from environment or secure config)
     gemini_api_key = os.environ.get("GOOGLE_API_KEY") # Prioritize env var, remove default fallback for clarity
-    # --- TEMPORARY DEBUG: Hardcode the new key ---
-    # gemini_api_key = "AIzaSyCwje0v5U9NQ15wcFHjF10sXnsOuAILkdE"
-    # print("[DEBUG] USING HARDCODED API KEY FOR TESTING!")
-    # --- END TEMPORARY DEBUG ---
+   
     if not gemini_api_key:
         # Make the error message clearer if key is not found
         raise ValueError("GOOGLE_API_KEY not found in environment variables. Please set it in the .env file.")
     genai.configure(api_key=gemini_api_key)
-    # Initialize the Gemini model
-    # gemini_model = genai.GenerativeModel('gemini-pro') # Use standard gemini-pro model
-    # print("[DEBUG] Using gemini-pro model.") # ADDED DEBUG
+    
     gemini_model = genai.GenerativeModel('gemini-1.5-flash') # Revert to gemini-1.5-flash
 except ValueError as e:
     print(f"Error configuring Gemini: {e}")
