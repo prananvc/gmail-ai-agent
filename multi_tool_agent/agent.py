@@ -4,14 +4,19 @@ from google.adk.sessions import InMemorySessionService
 from google.genai import types
 
 # Import the tools and service function from your quickstart file
-from .quickstart import (
-    summarize_email_tool,
-    generate_reply_tool,
-    send_reply_tool,
+# from .quickstart import (
+from .gmail_agent_logic import (
+    # summarize_email_tool, # Removed - Use function directly
+    # generate_reply_tool,  # Removed - Use function directly
+    # send_reply_tool,      # Removed - Use function directly
     get_gmail_service,
-    list_emails_tool,
-    search_emails_tool,
-    generate_reply_with_gemini,
+    # list_emails_tool,     # Removed - Use function directly
+    # search_emails_tool,   # Removed - Use function directly
+    generate_reply_with_gemini, # Function for generating draft
+    summarize_email_with_gemini, # Function for summarizing
+    send_reply,                 # Function for sending
+    list_recent_emails,         # Function for listing
+    search_emails              # Function for searching
 )
 
 # --- Agent Definition ---
@@ -48,11 +53,11 @@ Workflow for Replying:
 # Create the list of tools for the agent
 # Ensure list_emails_tool and search_emails_tool are included
 agent_tools = [
-    list_emails_tool,
-    search_emails_tool,
-    summarize_email_tool,
-    generate_reply_with_gemini,
-    send_reply_tool,
+    list_recent_emails,         # Use function name directly
+    search_emails,              # Use function name directly
+    summarize_email_with_gemini,# Use function name directly
+    generate_reply_with_gemini, # Use function name directly
+    send_reply,                 # Use function name directly
 ]
 
 # Create the Agent instance
